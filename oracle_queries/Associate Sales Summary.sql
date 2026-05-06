@@ -18,6 +18,6 @@ and b.dcs_code=d.dcs_code
 and b.invn_sbs_item_sid=i.sid 
 and s.sid=i.sbs_sid
 and a.receipt_type in (0,1) and b.item_type in (1,2) and  a.status=4 
-and =-=a.sbs_no=-= and =-=a.store_code=-= and =-=trunc(a.invc_post_date)=-=
+and =-=a.sbs_no=-= and =-=a.store_code=-= and =-=trunc(a.created_datetime)=-=
 group by a.sbs_no,a.store_code, b.employee1_full_name
 order by a.sbs_no,a.store_code, b.employee1_full_name

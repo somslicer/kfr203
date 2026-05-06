@@ -1,4 +1,4 @@
-select a.sbs_no, a.store_no,a.store_code,extract(year from a.invc_post_date) YEAR,extract(month from a.invc_post_date) MONTH,a.tax_area_name tax_area, a.tax_area2_name tax_area2, b.tax_code,b.tax_perc, b.tax2_perc "TAX_PERC2",
+select a.sbs_no, a.store_no,a.store_code,extract(year from a.created_datetime) YEAR,extract(month from a.created_datetime) MONTH,a.tax_area_name tax_area, a.tax_area2_name tax_area2, b.tax_code,b.tax_perc, b.tax2_perc "TAX_PERC2",
 round(sum(decode(b.item_type,2,b.qty*-1,b.qty)*(b.tax_amt+b.tax2_amt)),2) "EXT TAX",
 sum(decode(b.item_type,2,b.qty*-1,b.qty)) "SOLD QTY",
 sum(decode(b.item_type,2,b.qty*-1,0)) "RETURN QTY",
@@ -18,6 +18,6 @@ and b.dcs_code=d.dcs_code
 and b.invn_sbs_item_sid=i.sid 
 and s.sid=i.sbs_sid
 and  a.receipt_type in (0,1) and b.item_type in (1,2) and  a.status=4
-and =-=a.sbs_no=-= and =-=a.store_no=-= and =-=a.store_code=-= and =-=trunc(a.invc_post_date)=-=
-group by a.sbs_no, a.store_no,a.store_code,extract(year from a.invc_post_date),extract(month from a.invc_post_date),a.tax_area_name,a.tax_area2_name, b.tax_code,b.tax_perc, b.tax2_perc
-order by a.sbs_no, a.store_no,a.store_code,extract(year from a.invc_post_date),extract(month from a.invc_post_date),a.tax_area_name,a.tax_area2_name, b.tax_code,b.tax_perc, b.tax2_perc
+and =-=a.sbs_no=-= and =-=a.store_no=-= and =-=a.store_code=-= and =-=trunc(a.created_datetime)=-=
+group by a.sbs_no, a.store_no,a.store_code,extract(year from a.created_datetime),extract(month from a.created_datetime),a.tax_area_name,a.tax_area2_name, b.tax_code,b.tax_perc, b.tax2_perc
+order by a.sbs_no, a.store_no,a.store_code,extract(year from a.created_datetime),extract(month from a.created_datetime),a.tax_area_name,a.tax_area2_name, b.tax_code,b.tax_perc, b.tax2_perc

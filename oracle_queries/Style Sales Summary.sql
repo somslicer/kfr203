@@ -38,6 +38,6 @@ a.use_vat,
        and =-=s.sbs_no=-=
        and =-=a.store_no=-=
        and =-=a.store_code=-=
-       and =-=trunc(a.invc_post_date)=-=
+       and =-=trunc(a.created_datetime)=-=
     group by s.sbs_name, d.dcs_code, v.vend_code, i.description1, a.use_vat
 ) r

@@ -4,9 +4,9 @@ select s.sbs_no as "SBS NO",
 	do.order_doc_no as "ORDER NO", 
 	(nvl(do.bt_first_name,'')||' '|| nvl(do.bt_last_name,'')) as "CUSTOMER NAME",
 	do.bt_primary_phone_no as "PHONE NO",
-	trunc(do.invc_post_date) as "ORDER DATE",
+	trunc(do.created_datetime) as "ORDER DATE",
 	trunc(do.modified_datetime) as "LAST ACTIVITY",
-	trunc((select max(td.invc_post_date)
+	trunc((select max(td.created_datetime)
 				from rps.document d1 
 				inner join rps.tender td on td.doc_sid = d1.sid
 				where (d1.sid = do.sid or d1.ref_order_sid = do.sid))) as "LAST DEPOSIT",
@@ -38,9 +38,9 @@ and s.sid = do.subsidiary_sid
 where (do.receipt_type = 2 or do.so_cancel_flag = 1)
 and do.order_type in (2)
 and do.status = 4 
---and trunc(do.invc_post_date)='19-FEB-2024'
+--and trunc(do.created_datetime)='19-FEB-2024'
 and =-=s.sbs_no=-=
 and =-=st.store_no=-=
 and =-=st.store_code=-=
-and =-=cast(do.invc_post_date as date)=-= 
+and =-=cast(do.created_datetime as date)=-= 
 order by do.sbs_no, do.store_no, do.order_doc_no

@@ -63,7 +63,7 @@ from
        and =-=do.sbs_no=-=
        and =-=st.store_no=-=
        and =-=st.store_code=-=
-       and =-=trunc(do.invc_post_date)=-=
+       and =-=trunc(do.created_datetime)=-=
     group by s.sbs_name, do.store_code, 
            d.dcs_code,
            v.vend_code,

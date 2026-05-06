@@ -1,8 +1,8 @@
 select do.sbs_no,
        st.store_code AS "STORE_CODE",
        di.discount_reason AS "REASON",  
-       trunc(do.invc_post_date) as "DATE",
-       to_char(do.invc_post_date,'HH24:mi:ss') as "TIME",
+       trunc(do.created_datetime) as "DATE",
+       to_char(do.created_datetime,'HH24:mi:ss') as "TIME",
        do.doc_no AS "TRANSACTION NO",
        do.workstation_no AS "WORKSTATION NO",
        do.workstation_name AS "WORKSTATION NAME",
@@ -40,8 +40,8 @@ left join rps.employee e
    and di.disc_amt <> 0
    and =-=do.sbs_no=-=
    and =-=st.store_no=-=
-   and =-=trunc(do.invc_post_date)=-=
-group by do.sbs_no, st.store_code,di.discount_reason, trunc(do.invc_post_date),
-to_char(do.invc_post_date,'HH24:mi:ss'), do.doc_no, do.workstation_no,do.workstation_name, e.full_name
-order by do.sbs_no, st.store_code,di.discount_reason, trunc(do.invc_post_date),
-to_char(do.invc_post_date, 'HH24:mi:ss'), do.doc_no, do.workstation_no,do.workstation_name, e.full_name
+   and =-=trunc(do.created_datetime)=-=
+group by do.sbs_no, st.store_code,di.discount_reason, trunc(do.created_datetime),
+to_char(do.created_datetime,'HH24:mi:ss'), do.doc_no, do.workstation_no,do.workstation_name, e.full_name
+order by do.sbs_no, st.store_code,di.discount_reason, trunc(do.created_datetime),
+to_char(do.created_datetime, 'HH24:mi:ss'), do.doc_no, do.workstation_no,do.workstation_name, e.full_name

@@ -1,4 +1,4 @@
-select a.sbs_no, a.store_code,a.employee1_full_name ASSOCIATE,trunc(a.invc_post_date) RECEIPT_DATE,to_char(a.doc_no) RECEIPT_NO,i.description1,
+select a.sbs_no, a.store_code,a.employee1_full_name ASSOCIATE,trunc(a.created_datetime) RECEIPT_DATE,to_char(a.doc_no) RECEIPT_NO,i.description1,
 i.attribute ATTRIBUTE, i. item_size ITEM_SIZE, i.alu ALU, i.upc UPC, 
 sum(decode(b.item_type,2,b.qty*-1,b.qty)) "SOLD QTY",
 sum(decode(b.item_type,2,b.qty*-1,0)) "RETURN QTY",
@@ -22,8 +22,8 @@ b.discount_reason "REASON"
         and =-=a.sbs_no=-= 
 		     and =-=a.store_no=-=
          and =-=a.store_code=-=
-    and =-=trunc(a.invc_post_date)=-=
-group by a.sbs_no, a.store_code,a.employee1_full_name,trunc(a.invc_post_date),a.doc_no,i.description1,
+    and =-=trunc(a.created_datetime)=-=
+group by a.sbs_no, a.store_code,a.employee1_full_name,trunc(a.created_datetime),a.doc_no,i.description1,
 i.attribute, i. item_size, i.alu, i.upc, b.discount_reason
-order by a.sbs_no, a.store_code,a.employee1_full_name,trunc(a.invc_post_date),a.doc_no,i.description1,
+order by a.sbs_no, a.store_code,a.employee1_full_name,trunc(a.created_datetime),a.doc_no,i.description1,
 i.attribute, i. item_size, i.alu, i.upc, b.discount_reason

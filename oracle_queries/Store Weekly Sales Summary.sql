@@ -1,4 +1,4 @@
-select a.sbs_no, a.store_code,to_char(a.invc_post_date,'WW') "WEEK",sum(decode(b.item_type,2,b.qty*-1,b.qty)) "SOLD QTY",
+select a.sbs_no, a.store_code,to_char(a.created_datetime,'WW') "WEEK",sum(decode(b.item_type,2,b.qty*-1,b.qty)) "SOLD QTY",
 sum(decode(b.item_type,2,b.qty*-1,0)) "RETURN QTY",
 round(sum(decode(b.item_type,2,b.qty*-1,b.qty)* decode(a.use_vat,1,b.orig_price-b.orig_tax_amt, b.orig_price)),2) "EXT ORIG PRICE",
 round(sum(decode(b.item_type,2,b.qty*-1,b.qty)*decode(a.use_vat,1,b.orig_price, b.orig_price+b.orig_tax_amt)),2) "EXT ORIG PRICE W TAX",
@@ -13,7 +13,7 @@ from rps.document a
 inner join rps.document_item b
 on a.sid=b.doc_sid
 inner join rps.subsidiary s on a.subsidiary_sid=s.sid
-where 1=1  and =-=s.sbs_no=-=   and =-=a.store_no=-= and =-=a.store_code=-= and =-=trunc(a.invc_post_date)=-=
+where 1=1  and =-=s.sbs_no=-=   and =-=a.store_no=-= and =-=a.store_code=-= and =-=trunc(a.created_datetime)=-=
 and a.receipt_type in (0,1) and b.item_type in (1,2) and  a.status=4 
-group by a.sbs_no, a.store_code,to_char(a.invc_post_date,'WW') 
-order by a.sbs_no, a.store_code,to_char(a.invc_post_date,'WW') 
+group by a.sbs_no, a.store_code,to_char(a.created_datetime,'WW') 
+order by a.sbs_no, a.store_code,to_char(a.created_datetime,'WW') 

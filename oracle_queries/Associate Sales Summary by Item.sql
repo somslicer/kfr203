@@ -18,7 +18,7 @@ inner join rps.dcs d on s.sid=d.sbs_sid and b.dcs_code=d.dcs_code
 inner join rps.invn_sbs_item i on b.invn_sbs_item_sid=i.sid and s.sid=i.sbs_sid
 left join rps.invn_sbs_extend it on i.sid=it.invn_sbs_item_sid
 where  1=1 and  a.receipt_type in (0,1) and b.item_type in (1,2) and  a.status=4 
-and =-=a.sbs_no=-= and =-=a.store_no=-= and =-=trunc(a.invc_post_date)=-=
+and =-=a.sbs_no=-= and =-=a.store_no=-= and =-=trunc(a.created_datetime)=-=
 group by a.sbs_no, a.store_code,a.doc_no,b.employee1_full_name,d.dcs_code,
 i.alu,i.upc,i.description1,i.description2,i.attribute,i.item_size,b.vend_code
 order by a.sbs_no, a.store_code,a.doc_no,b.employee1_full_name,d.dcs_code,

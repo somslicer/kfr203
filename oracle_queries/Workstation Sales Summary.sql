@@ -35,7 +35,7 @@ from
         from rps.document d, rps.document_item di
        where d.receipt_type in (0,1)
          and d.status = 4 and d.sid=di.doc_sid
-         and =-=trunc(d.invc_post_date)=-=
+         and =-=trunc(d.created_datetime)=-=
       group by d.sbs_no, d.store_code, d.store_name,
                d.workstation_no, d.workstation_name
       ) do

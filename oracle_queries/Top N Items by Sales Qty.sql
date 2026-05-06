@@ -22,7 +22,7 @@ left join (select a.sbs_no,a.store_sid,b.invn_sbs_item_sid,
 sum(decode(b.item_type,2,b.qty*-1,b.qty)) qty,sum(decode(b.item_type,2,b.qty*-1,b.qty)* decode(a.use_vat,1,b.price, b.price+b.tax_amt+b.tax2_amt)) val
 from rps.document a,rps.document_item b
 where a.sid=b.doc_sid and  a.receipt_type in (0,1) and b.item_type in (1,2) and  a.status=4 and
-=-=cast(a.invc_post_date as date)=-=
+=-=cast(a.created_datetime as date)=-=
 group by a.sbs_no,a.store_sid,b.invn_sbs_item_sid) sal
 on s.sbs_no=sal.sbs_no and iq.store_sid=sal.store_sid and iq.invn_sbs_item_sid=sal.invn_sbs_item_sid
 where 1=1 and =-=s.sbs_no=-=

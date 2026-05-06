@@ -6,7 +6,7 @@ SELECT s.sbs_name
           AS "SO NO",
        a.bt_first_name || ' ' || a.bt_last_name
           AS "BILL TO NAME",
-       TRUNC (a.invc_post_date)
+       TRUNC (a.created_datetime)
           AS "ORDER DATE",   
        TRUNC (a.ship_date)
           AS "SHIPPING DATE",   
@@ -24,4 +24,4 @@ SELECT s.sbs_name
  WHERE a.receipt_type IN (2) 
    AND a.status = 4
    AND a.is_held = 0
-  and =-=a.sbs_no=-= and =-=a.store_no=-= and =-=trunc(a.invc_post_date)=-=
+  and =-=a.sbs_no=-= and =-=a.store_no=-= and =-=trunc(a.created_datetime)=-=

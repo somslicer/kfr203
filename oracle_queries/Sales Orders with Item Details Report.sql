@@ -1,7 +1,7 @@
 select s.sbs_no as "SBS NO",
 	st.store_no as "STORE NO",
 	st.store_code as "STORE CODE",
-	trunc(d.invc_post_date) AS "CREATED DATE",
+	trunc(d.created_datetime) AS "CREATED DATE",
 	(nvl(d.bt_first_name,'')||' '|| nvl(d.bt_last_name,'')) as "CUSTOMER NAME",
 	d.order_doc_no AS "ORDER NO",
 	i.alu as "ALU",
@@ -34,5 +34,5 @@ and d.status = 4
 and =-=s.sbs_no=-=
 and =-=st.store_no=-=
 and =-=st.store_code=-=
-and =-=cast(d.invc_post_date as date)=-= 
-order by d.invc_post_date desc
+and =-=cast(d.created_datetime as date)=-= 
+order by d.created_datetime desc

@@ -12,7 +12,7 @@ From Rps.Document A
 Join Rps.Document_Item B On A.Sid=B.Doc_Sid
 join RPS.CUSTOMER c on c.sid=a.bt_cuid 
 Where 1=1 And  A.Receipt_Type In (0,1) And  A.Status=4 And Bt_Id Is Not Null 
-and =-=a.sbs_no=-= and =-=trunc(a.invc_post_date)=-= and 
+and =-=a.sbs_no=-= and =-=trunc(a.created_datetime)=-= and 
 =-=b.dcs_code=-= and =-=b.vend_code=-= and =-=b.description1=-= and =-=trunc(C.LAST_SALE_DATE)=-=
 group by a.sbs_no,bt_id ,
 bt_first_name ,bt_last_name ,bt_address_line1 , b.dcs_code, b.vend_code, b.description1,

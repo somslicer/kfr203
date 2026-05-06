@@ -68,7 +68,7 @@ from
        and do.status = 4
  and =-=s.sbs_no=-= and =-=st.store_no=-= and =-=st.store_code=-= and =-=st.store_name=-=
 and =-=sl.subloc_code=-= and =-=sl.subloc_name=-=
-       and =-=trunc(do.invc_post_date)=-=
+       and =-=trunc(do.created_datetime)=-=
     group by s.sbs_name, do.store_code, 	sl.subloc_id,	  	  sl.subloc_code, 
 	  sl.subloc_name,
            d.dcs_code,

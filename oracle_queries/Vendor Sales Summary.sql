@@ -31,7 +31,7 @@ a.use_vat,
        and =-=s.sbs_no=-=
        and =-=a.store_no=-=
        and =-=a.store_code=-=
-       and =-=trunc(a.invc_post_date)=-=
+       and =-=trunc(a.created_datetime)=-=
     group by s.sbs_name,v.vend_code, a.use_vat
 ) r
 order by r.sbs_name,r.vend_code
