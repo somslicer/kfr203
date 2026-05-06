@@ -38,7 +38,7 @@ round(sum(decode(b.item_type,2,b.qty*-1,b.qty)*(b.tax_amt+b.tax2_amt)),2) "EXT T
        JOIN rps.invn_sbs_item i ON i.sid = b.invn_sbs_item_sid
  WHERE a.receipt_type IN (0, 1) AND b.item_type IN (1, 2) AND a.status = 4
  and =-=a.sbs_no=-= and =-=a.store_no=-= and =-=trunc(a.invc_post_date)=-=
- Group By S.Sbs_Name, A.Store_Code, A.Doc_No, Trunc (A.invc_post_date), To_Char (A.invc_post_date, 'hh:mi:ss am'),
+ Group By S.Sbs_Name, A.Store_Code, A.Doc_No, Trunc (A.Invc_Post_Date), To_Char (A.Invc_Post_Date, 'hh:mi:ss am'),
        a.tender_name, i.upc, i.alu, b.dcs_code, b.vend_code, b.attribute, B.Item_Size, B.Description1, b.serial_no, b.cost
-order By S.Sbs_Name, A.Store_Code, A.Doc_No, Trunc(A.invc_post_date), To_Char(A.invc_post_date, 'hh:mi:ss am'),
+order By S.Sbs_Name, A.Store_Code, A.Doc_No, Trunc(A.Invc_Post_Date), To_Char(A.Invc_Post_Date, 'hh:mi:ss am'),
        a.tender_name, i.upc, i.alu, b.dcs_code, b.vend_code, b.attribute, B.Item_Size, B.Description1, b.serial_no 

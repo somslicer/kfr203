@@ -42,7 +42,7 @@ round(sum(decode(b.item_type,2,b.qty*-1,b.qty)*(b.tax_amt+b.tax2_amt)),2) "EXT T
  and =-=s.sbs_no=-= and =-=st.store_no=-= and =-=st.store_code=-= and =-=st.store_name=-=
 and =-=sl.subloc_code=-= and =-=sl.subloc_name=-=
 and =-=trunc(a.invc_post_date)=-=
- Group By S.Sbs_Name, A.Store_Code, A.Doc_No, Trunc (A.invc_post_date), To_Char (A.invc_post_date, 'hh:mi:ss am'), sl.subloc_id, sl.subloc_code, sl.subloc_name,
+ Group By S.Sbs_Name, A.Store_Code, A.Doc_No, Trunc (A.Invc_Post_Date), To_Char (A.Invc_Post_Date, 'hh:mi:ss am'), sl.subloc_id, sl.subloc_code, sl.subloc_name,
        a.tender_name, i.upc, i.alu, b.dcs_code, b.vend_code, b.attribute, B.Item_Size, B.Description1, b.cost
-order By S.Sbs_Name, A.Store_Code, A.Doc_No, Trunc(A.invc_post_date), To_Char(A.invc_post_date, 'hh:mi:ss am'),
+order By S.Sbs_Name, A.Store_Code, A.Doc_No, Trunc(A.Invc_Post_Date), To_Char(A.Invc_Post_Date, 'hh:mi:ss am'),
        a.tender_name, i.upc, i.alu, b.dcs_code, b.vend_code, b.attribute, B.Item_Size, B.Description1 

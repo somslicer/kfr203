@@ -27,7 +27,7 @@ sales AS (
         INV.ATTRIBUTE, 
         INV.ITEM_SIZE, 
         'SALES' As Transaction_Type,
-		trunc(a.invc_post_date) AS CREATED_DATE, 
+		trunc(a.Invc_post_date) AS CREATED_DATE, 
         A.DOC_NO TRANSACTION_NO, 
         -Sum(B.Qty) As "DOC QTY",
         ROUND(Sum(Inq.Qty),0) As "STORE QTY", 
@@ -48,8 +48,8 @@ sales AS (
       AND a.receipt_type IN (0)
       AND a.status = 4
       AND B.Item_Type IN (1)
-	  and =-=s.sbs_no=-= and =-=st.store_no=-= and =-=st.store_code=-= and =-=Date(a.invc_post_date)=-= 
-    GROUP BY s.sbs_no, st.store_code, a.invc_post_date, a.doc_no, 
+	  and =-=s.sbs_no=-= and =-=st.store_no=-= and =-=st.store_code=-= and =-=Date(a.Invc_post_date)=-= 
+    GROUP BY s.sbs_no, st.store_code, a.Invc_post_date, a.doc_no, 
              inv.upc, inv.alu, inv.description1, inv.description2, 
              inv.attribute, inv.item_size
 ),
@@ -64,7 +64,7 @@ salesret AS (
         INV.ATTRIBUTE, 
         INV.ITEM_SIZE, 
 		'RETURN' AS TRANSACTION_TYPE,
-		trunc(a.invc_post_date) AS CREATED_DATE, 
+		trunc(a.Invc_post_date) AS CREATED_DATE, 
         A.DOC_NO TRANSACTION_NO, 
         SUM(b.qty) AS "DOC QTY",
         ROUND(Sum(Inq.Qty),0) As "STORE QTY", 
@@ -85,8 +85,8 @@ salesret AS (
       AND a.receipt_type IN (1)
       AND a.status = 4
       AND B.Item_Type IN (2)
-	  and =-=s.sbs_no=-= and =-=st.store_no=-= and =-=st.store_code=-= and =-=Date(a.invc_post_date)=-= 
-    GROUP BY s.sbs_no, st.store_code, a.invc_post_date, a.doc_no, 
+	  and =-=s.sbs_no=-= and =-=st.store_no=-= and =-=st.store_code=-= and =-=Date(a.Invc_post_date)=-= 
+    GROUP BY s.sbs_no, st.store_code, a.Invc_post_date, a.doc_no, 
              inv.upc, inv.alu, inv.description1, inv.description2, 
              inv.attribute, inv.item_size
 ),
@@ -101,7 +101,7 @@ receiving AS (
         INV.ATTRIBUTE, 
         INV.ITEM_SIZE, 
         'RECEIVING' AS transaction_type,
-		trunc(a.invc_post_date) AS CREATED_DATE, 
+		trunc(a.Invc_post_date) AS CREATED_DATE, 
         A.VOU_NO TRANSACTION_NO, 
         SUM(CASE WHEN a.vou_type = 1 THEN b.qty * -1 ELSE b.qty END) AS "DOC QTY",
         ROUND(Sum(Inq.Qty),0) As "STORE QTY", 
@@ -124,8 +124,8 @@ receiving AS (
       AND a.slip_flag = 0
       AND a.held = 0
       And A.Proc_Status Not In (16, 32)
-	  and =-=s.sbs_no=-= and =-=st.store_no=-= and =-=st.store_code=-= and =-=Date(a.invc_post_date)=-= 
-    GROUP BY s.sbs_no, st.store_code, a.invc_post_date, a.vou_no, 
+	  and =-=s.sbs_no=-= and =-=st.store_no=-= and =-=st.store_code=-= and =-=Date(a.Invc_post_date)=-= 
+    GROUP BY s.sbs_no, st.store_code, a.Invc_post_date, a.vou_no, 
              inv.upc, inv.alu, inv.description1, inv.description2, 
              Inv.Attribute, Inv.Item_Size
 ),
@@ -133,7 +133,7 @@ transfer_out AS (
     SELECT 
         S.SBS_NO, ST.STORE_CODE,  INV.UPC, INV.ALU, INV.DESCRIPTION1, INV.DESCRIPTION2, INV.ATTRIBUTE, INV.ITEM_SIZE, 
 		'TRANSFER OUT' AS transaction_type,
-		trunc(a.invc_post_date) AS CREATED_DATE, A.SLIP_NO TRANSACTION_NO,
+		trunc(a.Invc_post_date) AS CREATED_DATE, A.SLIP_NO TRANSACTION_NO,
 		-SUM(b.qty) AS "DOC QTY",
         ROUND(Sum(Inq.Qty),0) As "STORE QTY", 
         Round(Sum(Inv.Cost * Inq.Qty),2) As "STORE EXT COST",
@@ -152,14 +152,14 @@ transfer_out AS (
     WHERE a.STATUS = 4
       AND a.HELD = 0
       AND A.Proc_Status NOT IN (16, 32)
-	  and =-=s.sbs_no=-= and =-=st.store_no=-= and =-=st.store_code=-= and =-=Date(a.invc_post_date)=-= 
-    Group By S.Sbs_No, St.Store_Code, A.invc_post_date, A.Slip_No, Inv.Upc, Inv.Alu, Inv.Description1, Inv.Description2, Inv.Attribute, Inv.Item_Size
+	  and =-=s.sbs_no=-= and =-=st.store_no=-= and =-=st.store_code=-= and =-=Date(a.Invc_post_date)=-= 
+    Group By S.Sbs_No, St.Store_Code, A.Invc_Post_Date, A.Slip_No, Inv.Upc, Inv.Alu, Inv.Description1, Inv.Description2, Inv.Attribute, Inv.Item_Size
 ),
 transfer_in AS (
     SELECT 
         S.SBS_NO, ST.STORE_CODE, INV.UPC, INV.ALU, INV.DESCRIPTION1, INV.DESCRIPTION2, INV.ATTRIBUTE, INV.ITEM_SIZE, 
 		'TRANSFER IN' AS transaction_type,
-		trunc(a.invc_post_date) AS CREATED_DATE, A.VOU_NO TRANSACTION_NO,
+		trunc(a.Invc_post_date) AS CREATED_DATE, A.VOU_NO TRANSACTION_NO,
         SUM(CASE WHEN a.vou_type = 1 THEN b.qty * -1 ELSE b.qty END) AS "DOC QTY",
         ROUND(Sum(Inq.Qty),0) As "STORE QTY", 
         Round(Sum(Inv.Cost * Inq.Qty),2) As "STORE EXT COST",
@@ -181,14 +181,14 @@ transfer_in AS (
       AND a.slip_flag = 1
       AND a.held = 0
       AND A.Proc_Status NOT IN (16, 32)
-	  and =-=s.sbs_no=-= and =-=st.store_no=-= and =-=st.store_code=-= and =-=Date(a.invc_post_date)=-= 
-    Group By S.Sbs_No, St.Store_Code, A.invc_post_date, A.Vou_No, Inv.Upc, Inv.Alu, Inv.Description1, Inv.Description2, Inv.Attribute, Inv.Item_Size
+	  and =-=s.sbs_no=-= and =-=st.store_no=-= and =-=st.store_code=-= and =-=Date(a.Invc_post_date)=-= 
+    Group By S.Sbs_No, St.Store_Code, A.Invc_Post_Date, A.Vou_No, Inv.Upc, Inv.Alu, Inv.Description1, Inv.Description2, Inv.Attribute, Inv.Item_Size
 ),
 adjust AS (
     SELECT 
         S.SBS_NO, ST.STORE_CODE, INV.UPC, INV.ALU, INV.DESCRIPTION1, INV.DESCRIPTION2, INV.ATTRIBUTE, INV.ITEM_SIZE, 
 		'ADJUSTMENT' AS transaction_type,
-		trunc(a.invc_post_date) AS CREATED_DATE, A.ADJ_NO TRANSACTION_NO, 
+		trunc(a.Invc_post_date) AS CREATED_DATE, A.ADJ_NO TRANSACTION_NO, 
         SUM(b.adj_value - b.orig_value) AS "DOC QTY",
         ROUND(Sum(Inq.Qty),0) As "STORE QTY", 
         Round(Sum(Inv.Cost * Inq.Qty),2) As "STORE EXT COST",
@@ -206,8 +206,8 @@ adjust AS (
     LEFT JOIN common_plv plv ON plv.itemsid = inv.sid AND plv.sbs_sid = st.sbs_sid
     WHERE a.adj_type = 0
       AND A.Held = 0
-	  and =-=s.sbs_no=-= and =-=st.store_no=-= and =-=st.store_code=-= and =-=Date(a.invc_post_date)=-= 
-    Group By S.Sbs_No, St.Store_Code, A.invc_post_date, A.Adj_No, Inv.Upc, Inv.Alu, Inv.Description1, Inv.Description2, Inv.Attribute, Inv.Item_Size
+	  and =-=s.sbs_no=-= and =-=st.store_no=-= and =-=st.store_code=-= and =-=Date(a.Invc_post_date)=-= 
+    Group By S.Sbs_No, St.Store_Code, A.Invc_Post_Date, A.Adj_No, Inv.Upc, Inv.Alu, Inv.Description1, Inv.Description2, Inv.Attribute, Inv.Item_Size
 )
 SELECT * FROM sales
 UNION ALL

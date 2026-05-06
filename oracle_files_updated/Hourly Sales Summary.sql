@@ -1,4 +1,4 @@
-select a.sbs_no, a.store_code,trunc(a.invc_post_date) "DATE",to_char(a.invc_post_date,'HH24') "HOUR",
+select a.sbs_no, a.store_code,trunc(a.created_Datetime) "DATE",to_char(a.invc_post_date,'HH24') "HOUR",
 sum(decode(b.item_type,2,b.qty*-1,b.qty)) "SOLD QTY",
 sum(decode(b.item_type,2,b.qty*-1,0)) "RETURN QTY",
 round(sum((case when b.item_type = 2 then b.qty*-1 else b.qty end) * (b.cost)), 2) as "EXT COST",
@@ -17,5 +17,5 @@ and s.sid=d.sbs_sid and b.sbs_no=s.sbs_no and =-=s.sbs_no=-= and =-=trunc(a.invc
 and b.dcs_code=d.dcs_code
 and b.invn_sbs_item_sid=i.sid 
 and s.sid=i.sbs_sid and a.receipt_type in (0,1)  and b.item_type in (1,2) and a.status=4 AND b.kit_flag NOT IN (2,3)
-group by a.sbs_no, a.store_code,trunc(a.invc_post_date),to_char(a.invc_post_date,'HH24')
-order by a.sbs_no, a.store_code,trunc(a.invc_post_date),to_char(a.invc_post_date,'HH24')
+group by a.sbs_no, a.store_code,trunc(a.created_Datetime),to_char(a.invc_post_date,'HH24')
+order by a.sbs_no, a.store_code,trunc(a.created_Datetime),to_char(a.invc_post_date,'HH24')
